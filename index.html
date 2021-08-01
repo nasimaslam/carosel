@@ -1,0 +1,186 @@
+<html>
+    <head>
+        <title>
+
+        </title>
+        <style>
+            body{
+                background:#1e272e;
+            }
+            .container{
+                margin:0 auto;
+                overflow: hidden;
+                width:70%;
+                position: relative;
+                margin-top:100px;
+            }
+            .main{
+                width:100%;
+                height:450px;
+                position:relative;
+                left:0%;
+              
+                
+            }
+            .main img{
+                width:100%;
+                height: 450px;
+            }
+
+           .img1{
+               position:absolute;
+               left:0%;
+               top:0%;
+           }
+           .img2{
+               position:absolute;
+               left:100%;
+               top:0%;
+           }
+           .img3{
+               position:absolute;
+               left:200%;
+               top:0%;
+           }
+           .img4{
+               position:absolute;
+               left:300%;
+               top:0%;
+           }
+           #next {
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 45px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99;
+    color:white;
+}
+#prev {
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 45px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99;
+    color:white;
+}
+.one{
+    width:10px;
+    height: 10px;
+    border:1px solid #fff;
+    border-radius: 50%;
+    display: inline-block;
+}
+.nice{
+    text-align: center;
+    margin-top:10px;
+}
+.active{
+    background:#fff;
+    border-radius: 50%;
+}
+         
+        </style>
+        <link rel='stylesheet' type="text/css" href='all.min.css'/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="main">
+                <img class='img1'src="1.jfif"/>
+                <img class='img2'src="2.jpg"/>
+                <img class='img3'src="3.jpg"/>
+                <img class='img4'src="4.jpg"/>
+                
+            </div>
+            <button id='prev'><i class="fas fa-chevron-left"></i></button>
+            <button id='next'><i class="fas fa-chevron-right"></i></button>
+            <div class="nice">
+
+                <span class='one active'></span>
+                <span class='one'></span>
+                <span class='one'></span>
+                <span class='one'></span>
+            </div>
+          
+        </div>
+        
+        <!-- <button id='prev'><i class="fas fa-chevron-left"></i></button>
+        <button id='next'><i class="fas fa-chevron-right"></i></button> -->
+        <script>
+            var prev=document.getElementById('prev');
+            var next=document.getElementById('next');
+            var imgTag=document.querySelector('.main');
+            var container=document.querySelector('.container');
+            var one=document.querySelectorAll('.one');
+            var count=1;
+            var newCount=3;
+            var deep=1;
+           var topOrder=3;
+            next.addEventListener('click',()=>{
+                var counter=count++;
+                if(counter>=3){
+                    count=0;
+                    imgTag.style.transition='1s';
+                imgTag.style.left=(counter*-100)+'%';
+                }else{
+                imgTag.style.transition='1s';
+                imgTag.style.left=(counter*-100)+'%';
+                   
+            }
+            var x=deep++;
+            if(deep>=4){
+                deep=0;
+                for(var i=0;i<4;i++){
+                one[i].classList.remove('active');
+                    one[x].classList.add('active');
+            }
+            }else{
+                for(var i=0;i<4;i++){
+                one[i].classList.remove('active');
+                    one[x].classList.add('active');
+            }
+            }
+            
+
+            });
+            prev.addEventListener('click',()=>{
+
+                var b=newCount--;
+                 if(b<=0){
+                    newCount=3;
+                    imgTag.style.transition='1s';
+                 imgTag.style.left=(b*-100)+'%';
+                  }
+                 else{
+                    imgTag.style.transition='1s';
+                imgTag.style.left=(b*-100)+'%';
+                 }
+            
+              
+                 var z=topOrder--;
+            if(z<=0){
+                topOrder=one.length-1;
+                for(var i=0;i<4;i++){
+                one[i].classList.remove('active');
+                    one[z].classList.add('active');
+                }
+            }else{
+                for(var i=0;i<4;i++){
+                one[i].classList.remove('active');
+                    one[z].classList.add('active');
+            }
+            }
+
+
+            });
+        </script>
+         <script src="all.min.js"></script> 
+    </body>
+</html>
